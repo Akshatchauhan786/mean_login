@@ -1,0 +1,30 @@
+<div class="container mt-5">
+    <div class="title">Login</div>
+    <form [formGroup]="myForm">
+        <div class="user__details">
+            <div class="input__box">
+                <span class="details">Username</span>
+                <input type="text" placeholder="Enter Username" required formControlName="Username">
+                <p class="error" style="color: red;" *ngIf="Username?.errors?.['required']">
+                    *Name is required.
+                </p>
+            </div>
+            <!-- </span> -->
+            <div class="input__box">
+                <span class="details">Password</span>
+                <input type="password" placeholder="Enter Password" required formControlName="password">
+                <p class="error" style="color: red;" *ngIf="password?.errors?.['required']">
+                    *Password is required.
+                </p>
+            </div>
+            <p class="error" style="color: red;">{{msg}}</p>
+        </div>
+        <div class="button">
+            <input (click)='Login()' type="submit" value="Login">
+        </div>
+    </form>
+
+    <div>
+        <p>If Not Register<b>?</b> Click here <a routerLink="/Signup"><u><b>Sign Up</b></u></a></p>
+    </div>
+</div>

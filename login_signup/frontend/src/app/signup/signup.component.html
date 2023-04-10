@@ -1,0 +1,89 @@
+<div class="container mt-5">
+    <div class="title">Sign Up</div>
+    <form [formGroup]="myForm">
+        <div class="user__details">
+            <div class="input__box">
+                <span class="details">Full Name</span>
+                <input type="text" placeholder="Enter Full Name" formControlName="name" required>
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" >
+                    <p class="error" style="color: red;" *ngIf="name?.errors?.['required']">
+                        *Name is required.
+                    </p>
+                </div>
+            </div>
+            <div class="input__box">
+                <span class="details">Username</span>
+                <input type="text" placeholder="Enter Username" required formControlName="Username">
+                <div *ngIf="Username.invalid && (Username.dirty || Username.touched)" >
+                <p class="error" style="color: red;" *ngIf="Username?.errors?.['required']">
+                    *Username is required.
+                </p>
+                </div>
+            </div>
+            <div class="input__box">
+                <span class="details">Email</span>
+                <input type="email" placeholder="Enter Email" formControlName="email">
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" >
+                <p class="error" style="color: red;" *ngIf="email?.errors?.['required']">
+                    *Email is required.
+                </p>
+                <p class="error" style="color: red;" *ngIf="email?.errors?.['pattern']">
+                    *Email format is wrong.
+                </p>
+                </div>
+            </div>
+            <div class="input__box">
+                <span class="details">Phone Number</span>
+                <input type="tel" formControlName="phonenumber" placeholder="Enter Phone Number">
+                <div *ngIf="phonenumber.invalid && (phonenumber.dirty || phonenumber.touched)" >
+                <p class="error" style="color: red;" *ngIf="phonenumber?.errors?.['required']">
+                    *Phone number is required.
+                </p>
+                <p class="error" style="color: red;" *ngIf="phonenumber?.errors?.['pattern']">
+                    *Please Enter 10 digit mobile number.
+                </p>
+                </div>
+            </div>
+            <div class="input__box">
+                <span class="details">Password</span>
+                <input type="password" placeholder="Enter Password" formControlName="password" required>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" >
+                <p class="error" style="color: red;" *ngIf="password?.errors?.['required']">
+                    *Password is required.
+                </p>
+                </div>
+            </div>
+            <div class="input__box">
+                <span class="details">Gender</span>
+                <select class="form-select" style="height: 62%;" formControlName="gender">
+                    <option value="">Select gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+                <div *ngIf="gender.invalid && (gender.dirty || gender.touched)" >
+                <p class="error" style="color: red;" *ngIf="gender?.errors?.['required']">
+                    *Gender is required.
+                </p>
+                </div>
+            </div>
+            <div class="input__box">
+                <span class="details">Image Upload</span>
+                <input class="form-control" placeholder="Please Upload image" (change)="onFileChange($event)" required
+                    type="file">
+                    
+                <p class="error" style="color: red;" *ngIf="image?.errors?.['required']">
+                    *Image is required.
+                </p>
+            </div>
+        </div>
+        <div class="button">
+            <input type="submit" (click)='Register()' value="Signup">
+        </div>
+    </form>
+    <!-- <p-selectButton optionLabel="name"></p-selectButton> -->
+    <div>
+        <p>If already Register Click here <a routerLink="/login"><u><b>Login</b></u></a></p>
+    </div>
+
+</div>

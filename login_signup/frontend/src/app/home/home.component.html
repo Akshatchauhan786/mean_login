@@ -1,0 +1,85 @@
+<app-navbar></app-navbar>
+<p-toast></p-toast>
+<p-confirmDialog header="Confirmation" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '19vw'}"
+    icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<div class="homecontainer table-responsive">
+    <h1 style="text-align: center;">All Users</h1>
+    <table class=" table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of alldata; let i=index;">
+                <th scope="row">{{i+1}}</th>
+                <th scope="row"><img *ngIf="imgValue == null" style="border-radius: 66px;" width="40" height="40"
+                        src='{{ base_url}}{{user.image }}' alt='{{ user.fullname }}'></th>
+                <td scope="row"> {{ user.fullname }}</td>
+                <td scope="row"> {{ user.email }}</td>
+                <td scope="row"> {{ user.phone }}</td>
+                <td scope="row"> {{ user.gender }}</td>
+                <td scope="row"> <span><button type="button" class="btn btn-primary btn-sm"
+                            (click)="Updateuser(user.auto_id)">Update </button></span><span><button type="button"
+                            class="btn btn-danger btn-sm" (click)="deleteuser(user.auto_id)">Delete</button></span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Modal -->
+    <p-dialog header="Update details" [(visible)]="display">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form [formGroup]="myForm">
+                        <div class="user__details_update">
+                            <div class="input__box">
+                                <span class="details">Full Name</span>
+                                <input type="text" placeholder="Enter Full Name" formControlName="name" required>
+                            </div>
+                            <div class="input__box">
+                                <span class="details">Username</span>
+                                <input type="text" placeholder="Enter Username" formControlName="Username">
+                            </div>
+                            <div class="input__box">
+                                <span class="details">Email</span>
+                                <input type="email" placeholder="Enter Email" formControlName="email">
+                            </div>
+                            <div class="input__box">
+                                <span class="details">Phone Number</span>
+                                <input type="tel" formControlName="phonenumber" placeholder="Enter Phone Number">
+                            </div>
+                            <div class="input__box">
+                                <span class="details">Password</span>
+                                <input type="password" placeholder="Enter Password" formControlName="password" required>
+                            </div>
+                            <div class="input__box">
+                                <span class="details">Gender</span>
+                                <select class="form-select" style="height: 62%;" formControlName="gender">
+                                    <option value="">Select gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="input__box">
+                                <span class="details">Image Update</span>
+                                <input class="form-control" placeholder="Please Upload image"
+                                    (change)="onFileChange($event)" type="file">
+                            </div>
+                        </div>
+                        <div class="button">
+                            <input type="submit" (click)='Updatedata()' value="Update">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </p-dialog>
+</div>
